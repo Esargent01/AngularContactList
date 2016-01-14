@@ -1,0 +1,47 @@
+[
+{
+"Type" : "Executive",
+"Name" : "Ann Brown",
+"Title" : "CEO",
+"Phone" : "(512) 465-5555",
+"Ext." : "",
+"Fax" : "(512) 465-5555",
+"Email" : "Executive"
+},
+{
+"Type" : "Inmar AR",
+"Name" : "Mary Brown",
+"Title" : "CFO",
+"Phone" : "(512) 465-5555",
+"Ext." : "",
+"Fax" : "(512) 465-5555",
+"Email" : "Inmar AR"
+},
+{
+"Type" : "Executive",
+"Name" : "John Doe",
+"Title" : "CTO",
+"Phone" : "(512) 465-5555",
+"Ext." : "",
+"Fax" : "(512) 465-5555",
+"Email" : "Executive"
+},
+{
+"Type" : "Daily",
+"Name" : "James Frank",
+"Title" : "President",
+"Phone" : "(512) 465-5555",
+"Ext." : "",
+"Fax" : "(512) 465-5555",
+"Email" : "Daily"
+},
+{
+"Type" : "Other",
+"Name" : "Frank Lemon",
+"Title" : "Senior Vice President",
+"Phone" : "(512) 465-5555",
+"Ext." : "",
+"Fax" : "(512) 465-5555",
+"Email" : "Other"
+}
+]

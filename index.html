@@ -1,0 +1,83 @@
+<!DOCTYPE html5>
+<html ng-app="app" ng-controller="contactsCtrl">
+<head>
+	<meta context="text/html; charset=UTF=8">
+	<meta charset="utf-8">
+	<title>Contact List</title>
+	<meta name="viewport" content="width=device-width, intial-scale=1, maximum-scale=1">
+
+	<!-- CSS -->
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+
+	<h1 class="pageHeading">External Contacts</h1>
+
+	<h2 class="pageSubHeading">Select the client contacts associated with this offer</h2>
+
+	<div class="panel panel-default">
+		<table class="table table-bordered">
+			<tr>
+				<th></th>
+				<th class="text-left">Type</th>
+				<th class="text-left">Name</th>
+				<th class="text-left">Title</th>
+				<th class="text-left">Phone</th>
+				<th class="text-left">Ext.</th>
+				<th class="text-left">Fax</th>
+				<th class="text-left">Email</th>
+			</tr>
+
+			<tr ng-repeat="contact in contacts" ng-class="{'selected inverse': contact.selected}">
+				<td class="text-center short-box"><input type="checkbox" ng-model="contact.selected"></td>
+				<td class="text-left">{{contact.Type}}</td>
+				<td class="text-left">{{contact.Name}}</td>
+				<td class="text-left">{{contact.Title}}</td>
+				<td class="text-left">{{contact.Phone | tel}}</td>
+				<td class="text-left short-box">{{contact.Ext}}</td>
+				<td class="text-left">{{contact.Fax | tel}}</td>
+				<td class="text-left">{{contact.Email}}</td>
+			</tr>
+		</table>
+	</div>
+
+	<button href="#" class="btn btn-primary formButton" ng-click="open('lg')" >
+		<span ng-if="!showForm">Add Contact</span>
+		<span ng-if="showForm">Hide Form</span>
+	</button>
+
+	<button class="btn btn-danger formButton" ng-click="deleteContact(contacts)" ng-if="isContactSelected(contacts)">Delete Contact</button>
+
+	<script type="text/ng-template" id="myModalContent.html">
+        <div class="addContact">
+			<form name="contactForm" class="formFields">
+				<div class="formContainer">
+					<input class="form-control" type="text" ng-model="contact.Type" placeholder="Enter Type Here" required>
+
+					<input class="form-control" type="text" ng-model="contact.Name" placeholder="Enter Name Here" required>
+
+					<input class="form-control" type="text" ng-model="contact.Title" placeholder="Enter Title Here" required>
+
+					<input class="form-control" type="tel" ng-model="contact.Phone" ng-bind="contact.Phone | tel" maxlength="10" placeholder="Enter Phone Number Here" required>
+				</div>
+				<div class="formContainer">
+					<input class="form-control" type="tel" ng-model="contact.Ext" maxlength="4" placeholder="Enter Extension Here (Optional)">
+
+					<input class="form-control" type="tel" ng-model="contact.Fax" ng-bind="contact.Fax | tel" maxlength="10" placeholder="Enter Fax Number Here (Optional)">
+
+					<input class="form-control" type="text" ng-model="contact.Email" placeholder="Enter Email Address Here" required>
+				</div>
+			</form>
+			<button class="btn btn-primary" ng-click="addContact(contact); ok()" ng-show="contactForm.$valid">Submit</button>
+		</div>
+    </script>
+
+	<!-- Scripts 'n Stuff -->
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.js"></script>
+    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-1.0.3.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-local-storage/0.2.2/angular-local-storage.min.js"></script>
+	<script type="text/javascript" src="js/app.js"></script>
+</body>
+</html>
