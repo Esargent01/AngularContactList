@@ -42,42 +42,56 @@
 		</table>
 	</div>
 
-	<button href="#" class="btn btn-primary formButton" ng-click="open('lg')" >
-		<span ng-if="!showForm">Add Contact</span>
-		<span ng-if="showForm">Hide Form</span>
+	<button class="btn btn-primary formButton" data-toggle="modal" data-target="#myModal" >
+		<span>Add A Newbie</span>
 	</button>
 
-	<button class="btn btn-danger formButton" ng-click="deleteContact(contacts)" ng-if="isContactSelected(contacts)">Delete Contact</button>
+	<button class="btn btn-danger formButton" ng-click="deleteContact(contacts)" ng-if="isContactSelected(contacts)">She Doesn't Even Go Here!</button>
 
-	<script type="text/ng-template" id="myModalContent.html">
-        <div class="addContact">
-			<form name="contactForm" class="formFields">
-				<div class="formContainer">
-					<input class="form-control" type="text" ng-model="contact.Type" placeholder="Enter Type Here" required>
+	<div id="myModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+			        <h4 class="modal-title">Enter Contact Information</h4>
+			    </div>
+			  <div class="addContact">
+				<form name="contactForm" class="formFields">
+					<div class="formContainer">
+						<input class="form-control" type="text" ng-model="contact.Type" placeholder="Enter Type Here" required>
 
-					<input class="form-control" type="text" ng-model="contact.Name" placeholder="Enter Name Here" required>
+						<input class="form-control" type="text" ng-model="contact.Name" placeholder="Enter Name Here" required>
 
-					<input class="form-control" type="text" ng-model="contact.Title" placeholder="Enter Title Here" required>
+						<input class="form-control" type="text" ng-model="contact.Title" placeholder="Enter Title Here" required>
 
-					<input class="form-control" type="tel" ng-model="contact.Phone" ng-bind="contact.Phone | tel" maxlength="10" placeholder="Enter Phone Number Here" required>
-				</div>
-				<div class="formContainer">
-					<input class="form-control" type="tel" ng-model="contact.Ext" maxlength="4" placeholder="Enter Extension Here (Optional)">
+						<input class="form-control" type="tel" ng-model="contact.Phone" ng-bind="contact.Phone | tel" maxlength="10" placeholder="Enter Phone Number Here" required>
+					</div>
+					<div class="formContainer">
+						<input class="form-control" type="tel" ng-model="contact.Ext" maxlength="4" placeholder="Enter Extension Here (Optional)">
 
-					<input class="form-control" type="tel" ng-model="contact.Fax" ng-bind="contact.Fax | tel" maxlength="10" placeholder="Enter Fax Number Here (Optional)">
+						<input class="form-control" type="tel" ng-model="contact.Fax" ng-bind="contact.Fax | tel" maxlength="10" placeholder="Enter Fax Number Here (Optional)">
 
-					<input class="form-control" type="text" ng-model="contact.Email" placeholder="Enter Email Address Here" required>
-				</div>
-			</form>
-			<button class="btn btn-primary" ng-click="addContact(contact); ok()" ng-show="contactForm.$valid">Submit</button>
+						<input class="form-control" type="text" ng-model="contact.Email" placeholder="Enter Email Address Here" required>
+					</div>
+				</form>
+				<button id="submit" class="btn btn-primary" ng-click="addContact(contact)" ng-disabled="!contactForm.$valid">Welcome To The Matrix</button>
+			 </div>
+			</div>
+
 		</div>
-    </script>
+	</div>
 
 	<!-- Scripts 'n Stuff -->
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.js"></script>
-    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-1.0.3.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-local-storage/0.2.2/angular-local-storage.min.js"></script>
 	<script type="text/javascript" src="js/app.js"></script>
+	<script type="text/javascript">
+		    $(document).ready(function(){
+			    $("#submit").click(function(){
+			        $("#myModal").modal("hide");
+			    });
+			});
+	</script>
 </body>
 </html>

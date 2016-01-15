@@ -1,14 +1,14 @@
-var app = angular.module('app', ['LocalStorageModule', 'ngAnimate', 'ui.bootstrap']);
+var app = angular.module('app', ['LocalStorageModule']);
 
 app.config(['localStorageServiceProvider', function (localStorageServiceProvider){
     localStorageServiceProvider.setPrefix('ls');
   }]);
 
-app.controller('contactsCtrl', function ($scope, localStorageService, $uibModal){
+app.controller('contactsCtrl', function ($scope, localStorageService){
 
 	$scope.contacts = [
 		{
-		"Type" : "Executive",
+		"Type" : "Boss Lady",
 		"Name" : "Ann Brown",
 		"Title" : "CEO",
 		"Phone" : "(512) 465-5555",
@@ -17,13 +17,13 @@ app.controller('contactsCtrl', function ($scope, localStorageService, $uibModal)
 		"Email" : "Executive"
 		},
 		{
-		"Type" : "Inmar AR",
+		"Type" : "Money Dude",
 		"Name" : "Mary Brown",
 		"Title" : "CFO",
 		"Phone" : "(512) 465-5555",
 		"Ext." : "",
 		"Fax" : "(512) 465-5555",
-		"Email" : "Inmar AR"
+		"Email" : "Money Dude's"
 		},
 		{
 		"Type" : "Executive",
@@ -35,22 +35,22 @@ app.controller('contactsCtrl', function ($scope, localStorageService, $uibModal)
 		"Email" : "Executive"
 		},
 		{
-		"Type" : "Daily",
+		"Type" : "Not Mine",
 		"Name" : "James Frank",
 		"Title" : "President",
 		"Phone" : "(512) 465-5555",
 		"Ext." : "",
 		"Fax" : "(512) 465-5555",
-		"Email" : "Daily"
+		"Email" : "Irrelevant"
 		},
 		{
-		"Type" : "Other",
+		"Type" : "Who Is This Guy?",
 		"Name" : "Frank Lemon",
 		"Title" : "Senior Vice President",
 		"Phone" : "(512) 465-5555",
 		"Ext." : "",
 		"Fax" : "(512) 465-5555",
-		"Email" : "Other"
+		"Email" : "Dunno....."
 		}
 	];
 
@@ -61,6 +61,11 @@ app.controller('contactsCtrl', function ($scope, localStorageService, $uibModal)
 	$scope.$watch('contacts', function () {
 	  localStorageService.set('contacts', $scope.contacts);
 	}, true);
+
+	$scope.addContact = function(contact){
+	  	$scope.contacts.push(angular.copy(contact));
+	  	delete $scope.contact;
+	};
 
   $scope.deleteContact = function(contacts){
   	$scope.contacts = contacts.filter(function(contact){
@@ -74,30 +79,6 @@ app.controller('contactsCtrl', function ($scope, localStorageService, $uibModal)
   	});
   };
 
-  $scope.showForm = false;
-
-  $scope.animationsEnabled = true;
-
-  $scope.open = function (size) {
-
-	    var modalInstance = $uibModal.open({
-	      animation: $scope.animationsEnabled,
-	      templateUrl: 'myModalContent.html',
-	      controller: 'contactsCtrl',
-	      size: size,
-	      resolve: {
-	        items: function () {
-	          return $scope.items;
-	        }
-	      }
-	    });
-	};
-
-	$scope.addContact = function(contact, $uibModal, $uibModalInstance){
-	  	$scope.contacts.push(angular.copy(contact));
-	  	delete $scope.contact;
-	  	$modalInstance.close();
-	};
 });
 
 app.filter('tel', function () {
