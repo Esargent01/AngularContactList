@@ -41,26 +41,26 @@ body {
 	background: #FFF;
 }
 
-.table th {
-	padding: 25px 8px !important;
+.table>tbody>tr>th {
+	padding: 25px 8px;
 	font-size: 15px;
 	color: #4AC3F5;
 	border: 1px solid #c0c0c0;
 	font-weight: 500;
 }
 
-.table td {
-	padding: 17px 8px !important;
+.table>tbody>tr>td {
+	padding: 17px 8px;
 	font-size: 15px;
 	color: #999;
 	min-width: 100px;
 	max-width: 100px;
 	border: 1px solid #c0c0c0;
-	vertical-align: middle !important;
+	vertical-align: middle;
 }
 
-.short-box {
-	max-width: 30px !important;
+.table>tbody>tr>.short-box {
+	max-width: 30px;
 }
 
 .formFields{
